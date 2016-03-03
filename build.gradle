@@ -39,11 +39,4 @@ githubPages {
      	into '.'
      }
   }
-
-  credentials {
-    username = "${GITHUB_IDENTITY}"
-    password = ''
-  }
 }
-
-//publishGhPages.dependsOn jbake
