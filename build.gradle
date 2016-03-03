@@ -40,10 +40,10 @@ githubPages {
      }
   }
 
-  /*credentials {
-    username = ''
+  credentials {
+    username = '${encrypted_e403eabacc39_key}'
     password = ''
-  }*/
+  }
 }
 
 //publishGhPages.dependsOn jbake
