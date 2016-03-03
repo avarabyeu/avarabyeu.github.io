@@ -31,7 +31,7 @@ jbake {
 defaultTasks 'jbake'
 
 githubPages {
-  repoUri = 'https://github.com/avarabyeu/avarabyeu.github.io.git'
+  repoUri = 'git@github.com:avarabyeu/avarabyeu.github.io.git'
   targetBranch = 'master'
 
   pages {
