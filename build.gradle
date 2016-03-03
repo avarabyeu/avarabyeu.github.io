@@ -41,7 +41,7 @@ githubPages {
   }
 
   credentials {
-    username = '${encrypted_e403eabacc39_key}'
+    username = "${GITHUB_IDENTITY}"
     password = ''
   }
 }
