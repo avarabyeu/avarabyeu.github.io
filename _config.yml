@@ -10,7 +10,7 @@ url: https://avarabyeu.github.io
 # Polyglot
 languages: ["ru", "en"]
 default_lang: "ru"
-exclude_from_localization: ["javascript", "images", "css", "fonts", "//fonts.googleapis.com"]
+exclude_from_localization: ["javascript", "images", "css", "fonts"]
 parallel_localization: true
 
 navi:
