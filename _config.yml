@@ -1,4 +1,4 @@
-title:            avarabyeu's blog
+title: avarabyeu's blog
 description:      Describe your website here.
 disqus_shortname: avarabyeusblog
 reading_time:     true
@@ -7,11 +7,27 @@ words_per_minute: 200
 # When testing locally leave blank or use http://localhost:4000
 url:
 
+
+# Polyglot
+languages: ["en", "ru"]
+default_lang: "ru"
+exclude_from_localization: ["javascript", "images", "css", "fonts", "//fonts.googleapis.com"]
+parallel_localization: true
+
+navi:
+  home:
+    en: Home
+    ru: Домой
+  about:
+    en: About
+    ru: О себе
+
+
 # Owner/author information
 owner:
   name:           Andrei Varabyeu
   avatar:         gravatar.jpg
-  bio:            "Solution Architect at EPAM Systems"
+  bio:            "Software Developer and Test Automation Engineer"
   email:          andrei.varabyeu@gmail.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:      avarabyeu
@@ -43,12 +59,15 @@ gems:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-polyglot
 sass:
   sass_dir: _sass
   style: compressed
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+#permalink:   /:categories/:title/
+permalink: pretty
+
 
 # Amount of post to show on home page
 paginate: 5
@@ -59,6 +78,9 @@ kramdown:
   entity_output: as_char
   toc_levels: 1..6
   enable_coderay: false
+  input: GFM
+  hard_wrap: false
+
 
   coderay:
     coderay_line_numbers: nil
@@ -78,4 +100,5 @@ page_layout: page
 titlecase: true
 
 include: [".htaccess"]
-exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+#exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
