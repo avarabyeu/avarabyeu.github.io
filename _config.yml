@@ -8,7 +8,7 @@ words_per_minute: 200
 url:
 
 # Polyglot
-languages: ["ru","en"]
+languages: ["en","ru"]
 default_lang: "ru"
 exclude_from_localization: ["javascript", "images", "css", "fonts"]
 parallel_localization: true
