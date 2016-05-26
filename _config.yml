@@ -5,11 +5,11 @@ reading_time:     true
 words_per_minute: 200
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
-url:
+url: http://avarabyeu.github.io
 
 
 # Polyglot
-languages: ["en", "ru"]
+languages: ["ru", "en"]
 default_lang: "ru"
 exclude_from_localization: ["javascript", "images", "css", "fonts", "//fonts.googleapis.com"]
 parallel_localization: true
