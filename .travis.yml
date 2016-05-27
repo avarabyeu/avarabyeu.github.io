@@ -8,7 +8,11 @@ before_install:
   - git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git
   - chmod +x ./publi.sh
   - openssl aes-256-cbc -K $encrypted_e403eabacc39_key -iv $encrypted_e403eabacc39_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
+
+  - bundle install;
 script:
+  - rm -rf _site/;
+  - bundle jekyll build
   - ./publi.sh
 
 
