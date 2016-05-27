@@ -11,4 +11,4 @@ git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 git add --all;
 git commit -m "`date`";
 git push origin develop;
-git subtree push --prefix  _site/ master;
+git subtree push --prefix  _site/ origin master;
