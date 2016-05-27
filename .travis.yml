@@ -8,7 +8,7 @@ before_install:
   - bundle install
   - openssl aes-256-cbc -K $encrypted_e403eabacc39_key -iv $encrypted_e403eabacc39_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
 script:
-  - publi.sh
+  - ./publi.sh
 
 
 # branch whitelist, only for GitHub Pages
