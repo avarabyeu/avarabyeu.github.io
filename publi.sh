@@ -6,4 +6,4 @@ bundle jekyll build
 git add --all
 git commit -m "`date`"
 git push origin develop
-git subtree push --prefix  _site/ origin master
+git subtree push --prefix  _site/ "git@github.com:avarabyeu/avarabyeu.github.io.git" master
