@@ -10,7 +10,7 @@ git config --global user.name "avarabyeu";
 git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 
 echo "Fetch the repo"
-git fetch -all;
+git fetch --all;
 
 git add _site;
 git commit -m "`date`";
