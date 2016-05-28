@@ -4,6 +4,7 @@ set -e # Exit with nonzero exit code if anything fails
 # publi.sh
 # change the branch names appropriately
 # git checkout develop
+echo "Fetch the repo"
 git fetch;
 
 git config --global user.email "andrei_varabyeu@gmail.com";
@@ -12,5 +13,9 @@ git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 
 git add _site;
 git commit -m "`date`";
+
+echo "Push to develop"
 git push origin develop;
+
+echo "Push subtree to master"
 git subtree push --prefix  _site/ origin master;
