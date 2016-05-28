@@ -11,6 +11,7 @@ git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 
 echo "Fetch the repo"
 git fetch;
+git pull;
 
 git add _site;
 git commit -m "`date`";
