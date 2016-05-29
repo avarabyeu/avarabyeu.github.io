@@ -17,4 +17,6 @@ echo "Push to develop"
 git push origin develop;
 
 echo "Push subtree to master"
-git push origin `git subtree split --prefix _site/ master`:master --force
+git subtree split --prefix _site -b temp; # create a local temp branch containing the splitted output folder
+git push -f origin temp:master # force the push of the gh-pages branch to the remote gh-pages branch at origin
+git branch -D temp # delete the local gh-pages because you will need it: ref
