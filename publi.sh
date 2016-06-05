@@ -10,7 +10,7 @@ git config --global user.name "avarabyeu";
 git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 
 
-git add _site;
+git add --force _site;
 git commit -m "`date`";
 
 echo "Push to develop"
