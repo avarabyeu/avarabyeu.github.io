@@ -12,7 +12,7 @@ lang: en
 
 ## Hello, there!
 
-I’m Andrei Varabyeu. I’m a Java Backend Developer and Test Automation Engineer from Minsk, Belarus. I've been working at EPAM Systems which is biggest outsourcing company in Eastern Europe.
+I’m Andrei Varabyeu. I’m a Java Backend Developer and Test Automation Engineer from Minsk, Belarus. I've been working in on of the biggest outsourcing company in Eastern Europe.
 
 In my spare time I like to explore new APIs and libraries and push some shit into GitHub.
 
