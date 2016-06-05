@@ -4,10 +4,9 @@ title: About Myself
 permalink: /about/
 
 comments: false
-modified: 2016-02-01
+modified: 2016-06-05
 lang: en
 
-<!-- published: false -->
 ---
 
 ## Hello, there!
