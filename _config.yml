@@ -9,7 +9,7 @@ url:
 
 # Polyglot
 languages: ["en","ru"]
-default_lang: "en"
+default_lang: "ru"
 exclude_from_localization: ["javascript", "images", "css", "fonts"]
 parallel_localization: false
 
