@@ -13,8 +13,8 @@ git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 git add --force _site;
 git commit -m "`date`";
 
-echo "Push to develop"
-git push origin develop;
+#echo "Push to develop"
+#git push origin develop;
 
 echo "Push subtree to master"
 git subtree split --prefix _site -b temp; # create a local temp branch containing the splitted output folder
