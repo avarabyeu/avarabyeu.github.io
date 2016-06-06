@@ -12,7 +12,28 @@ languages: ["en","ru"]
 default_lang: "ru"
 exclude_from_localization: ["javascript", "images", "css", "fonts"]
 parallel_localization: false
-
+i18n:
+  back:
+      en: Back
+      ru: Назад
+  about_blog:
+      en: About the blog
+      ru: О блоге
+  about_me:
+    en: About me
+    ru: Обо мне
+  home:
+      en: Home
+      ru: Домой
+  posts:
+      en: Posts
+      ru: Посты
+  all_posts:
+      en: All Posts
+      ru: Все Посты
+  all_tags:
+      en: All Tags
+      ru: Все Тэги
 
 # Owner/author information
 owner:

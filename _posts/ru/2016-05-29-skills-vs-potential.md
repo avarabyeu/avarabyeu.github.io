@@ -2,11 +2,12 @@
 layout: post
 title: Навыки vs. потенциал<br> или что ожидается от junior'a
 description: "Навыки и потенциал или как успешно пройти интервью на junior-позицию"
-modified: 2014-12-24
+modified: 2015-06-05
 tags: [ru, hiring, junior]
 lang: ru
+comments: true
+share: true
 
-#permalink: /hello-vs/
 published: true
 ---
 
