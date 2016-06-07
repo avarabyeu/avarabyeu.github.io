@@ -61,19 +61,6 @@ body {
 		color: lighten($base-color,20);
 	}
 }
-.header-title-lang {
-	vertical-align: top;
-	text-align: right;
-	position: absolute;
-	margin: 10px 60px;
-	right: 0px;
-	color: $white;
-	a {
-		color: $white;
-	}
-	@media #{$large} {
-	}
-}
 .feature .header-title {
 	position: absolute;
 	top: 0;
@@ -87,6 +74,18 @@ body {
 		vertical-align: middle;
 		margin: 0 auto;
 		text-align: center;
+	}
+	.header-title-lang {
+		left: auto;
+		right: 0px;
+		margin: 10px;
+		font-weight: lighter;
+		margin: 10px 60px;
+		position: absolute;
+		color: $white;
+		a {
+			color: $white;
+		}
 	}
 	h1 {
 		margin: 10px;
