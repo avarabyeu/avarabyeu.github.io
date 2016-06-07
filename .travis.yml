@@ -5,11 +5,12 @@ rvm:
 before_install:
   - openssl aes-256-cbc -K $encrypted_e403eabacc39_key -iv $encrypted_e403eabacc39_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
-  - chmod +x ./publi.sh  
+  - chmod +x ./publi.sh
 
 script:
   - rm -rf _site/
   - bundle exec jekyll build
+  - cp CNAME _site/
   - ./publi.sh
 
 
