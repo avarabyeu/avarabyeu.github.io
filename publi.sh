@@ -11,6 +11,8 @@ git remote set-url origin git@github.com:avarabyeu/avarabyeu.github.io.git;
 
 
 git add --force _site;
+git add CNAME;
+
 git commit -m "`date`";
 
 #echo "Push to develop"
