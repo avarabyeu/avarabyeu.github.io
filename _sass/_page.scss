@@ -65,7 +65,6 @@ body {
 	vertical-align: top;
 	text-align: right;
 	position: absolute;
-	font-weight: 700;
 	margin: 10px 60px;
 	right: 0px;
 	color: $white;
@@ -110,6 +109,9 @@ body {
 				color: $white;
 			}
 		}
+	}
+	h3 {
+		color: $white;
 	}
 	p {
 		color: $white;
