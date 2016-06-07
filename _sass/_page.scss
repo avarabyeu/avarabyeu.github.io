@@ -80,8 +80,11 @@ body {
 		right: 0px;
 		margin: 10px;
 		font-weight: lighter;
-		margin: 10px 60px;
+		margin: 10px 20px;
 		position: absolute;
+		overflow: hidden;
+
+		z-index: 1100;
 		color: $white;
 		a {
 			color: $white;
