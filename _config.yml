@@ -6,7 +6,7 @@ reading_time:     true
 words_per_minute: 200
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
-url: http://avarabyeu.me
+url: #http://avarabyeu.me
 
 # Polyglot
 languages: ["en","ru"]
@@ -35,6 +35,9 @@ i18n:
   all_tags:
       en: All Tags
       ru: Все Тэги
+  read_more:
+      en: Read More...
+      ru: Читать дальше...
 
 # Owner/author information
 owner:

@@ -1,8 +1,7 @@
 ---
 layout: post-index
 title: Latest Posts
-description: "Describe this nonsense."
-tags: [Jekyll, theme, themes, responsive, blog, modern]
+description: Automated testing in the raw
 comments: false
 image:
   <!-- feature: abstract-1.jpg -->
@@ -38,7 +37,7 @@ image:
     {% endif %}
   </header>
   <div class="entry-content">
-    {{ post.content }}
+    {{ post.excerpt }}<a href="{{ post.url }}">{{ site.i18n.read_more[site.active_lang] }}</a>
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 {% endfor %}
