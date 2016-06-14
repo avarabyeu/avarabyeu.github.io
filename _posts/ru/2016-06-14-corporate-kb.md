@@ -2,8 +2,8 @@
 layout: post
 title: Про корпоративный Knowledge Base и яичницу
 description:
-modified: 2015-06-05
-tags: [ru, company, negative]
+modified: 2015-06-14
+tags: [ru, notech, education]
 lang: ru
 comments: true
 share: true
