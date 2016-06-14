@@ -426,6 +426,11 @@ header .entry-meta {
 	}
 	img {
 		@include border-radius(3px,0,0,3px); // round image corners
+		max-height: 300px;
+		// margin-left: 25%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 }
 
