@@ -1,120 +1,63 @@
-title: Automated Testing in the raw
-slogan: -Technologies? Quality?<br>-No, thanks. Just business value
-description:      Describe your website here.
-disqus_shortname: avarabyeusblog
-reading_time:     true
-words_per_minute: 200
-# Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
-# When testing locally leave blank or use http://localhost:4000
-url: #http://avarabyeu.me
+# Mandatory settings
 
-# Polyglot
-languages: ["en","ru"]
-default_lang: "ru"
-exclude_from_localization: ["javascript", "images", "css", "fonts"]
-parallel_localization: false
-i18n:
-  back:
-      en: Back
-      ru: Назад
-  about_blog:
-      en: About the blog
-      ru: О блоге
-  about_me:
-    en: About me
-    ru: Обо мне
-  home:
-      en: Home
-      ru: Домой
-  posts:
-      en: Posts
-      ru: Посты
-  all_posts:
-      en: All Posts
-      ru: Все Посты
-  all_tags:
-      en: All Tags
-      ru: Все Тэги
-  read_more:
-      en: Read More...
-      ru: Читать дальше...
+name: Automated Testing in the raw
+paginate: 25
+paginate_path: "/posts/page/:num/"
+url: # add site url http://example.com/
+blog_theme: light # Or use dark
 
-# Owner/author information
-owner:
-  name:           Andrei Varabyeu
-  avatar:         gravatar.jpg
-  bio:            "Software Developer and Test Automation Engineer"
-  email:          andrei.varabyeu@gmail.com
-  # Social networking links used in footer. Update and remove as you like.
-  twitter:      avarabyeu
-  facebook:
-  github:       avarabyeu
-  stackexchange:
-  linkedin:     avarabyeu
-  instagram:
-  flickr:
-  tumblr:
-  # google plus id, include the '+', eg +mmistakes
-  google_plus:
+# Optional settings
 
-# Background image to be tiled on all pages
-background:
+discus_identifier: avarabyeusblog # Add your Disqus identifier
+ga_analytics: UA-78777980-1 # Add your GA Tracking Id
+rss_enabled: true # Change to false if not
+social:
+  dribbble: # Add your Dribbble handle
+  facebook: # Add your Facebook handle
+  github: avarabyeu # Add your GitHub handle
+  linkedin: avarabyeu # Add your LinkedIn handle
+  twitter: # Add your Twitter handle
+  email: # andrei.varabyeu@gmail.com # Add your Email address
+  bitcoin: # Add your Bitcoin link or address
 
-# Analytics and webmaster tools stuff goes here
-google_analytics: UA-78777980-1
-google_verify:
-# https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:
+# Important settings (change at own risk)
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/New_York
-future:      true
-highlighter: rouge
-markdown:    kramdown
+assets:
+  compress:
+    css: true
+    js: true
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/bower
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendor/
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
+defaults:
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: articles_by_tag
+exclude:
+  - .bowerrc
+  - .travis.yml
+  - bin/*
+  - bower.json
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
 gems:
-  - jekyll-sitemap
+  - jekyll-assets
   - jekyll-paginate
-  - jekyll-gist
-  - jekyll-polyglot
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-#permalink:   /:categories/:title/
-permalink: pretty
-
-
-# Amount of post to show on home page
-paginate: 5
-
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  enable_coderay: false
-  input: GFM
-  hard_wrap: false
-
-
-  coderay:
-    coderay_line_numbers: nil
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: class
-
-# Octopress
-# Default extensions
-post_ext: md
-page_ext: md
-# Found in _templates/
-post_layout: post
-page_layout: page
-# Format titles with titlecase?
-titlecase: true
-
-include: [".htaccess"]
-#exclude: ["lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
-exclude: ["CNAME", "id_rsa.enc", "publi.sh", "vendor", "lib", "config.rb", "Capfile", "config", "Gemfile", "Gemfile.lock", "README.md", "LICENSE", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+  - jekyll-sitemap
+permalink: posts/:slug
