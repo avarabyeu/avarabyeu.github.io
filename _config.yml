@@ -1,7 +1,7 @@
 # Mandatory settings
 
 name: Automated Testing in the raw
-description: -Technologies? Quality? -No, thanks. Just business value
+description: -Technologies? Quality?<br>-No, thanks. Just business value
 paginate: 25
 paginate_path: "/posts/page/:num/"
 url: # add site url http://example.com/
