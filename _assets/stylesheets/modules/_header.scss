@@ -8,6 +8,16 @@
   border-bottom: 1px solid $base-border-color;
 }
 
+.header-description {
+  font-family: $serif;
+  font-size: 14px;
+  font-weight: 900;
+  float: right;
+  padding: 0;
+  // margin: 15px 0 0;
+  // border-bottom: 1px solid $base-border-color;
+}
+
 .header-logo {
   display: inline-block;
   font-family: $serif;
