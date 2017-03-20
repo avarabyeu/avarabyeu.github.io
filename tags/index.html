@@ -17,6 +17,7 @@ comments: false
 <span class="article-list-divider"></span>
 {% for item in (0..site.tags.size) %}{% unless forloop.last %}
   {% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
+  <ul>
   <h5 id="{{ this_word }}">#{{ this_word }}</h2>
     {% for post in site.tags[this_word] %}{% if post.title != null %}
       <li class="reveal">
