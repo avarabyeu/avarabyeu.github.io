@@ -81,7 +81,7 @@ protected StartTestItemRQ buildStartStepRq(ITestResult testResult) {
 ```java
 public class MyTestNgService extends TestNGService {
 
-public MyRpListener(ListenerParameters parameters, ReportPortalClient reportPortalClient) {
+public MyTestNgService(ListenerParameters parameters, ReportPortalClient reportPortalClient) {
             super(parameters, reportPortalClient);
 }
 
