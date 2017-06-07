@@ -13,7 +13,7 @@ image:
 
 published: true
 ---
-{% include image.html path="posts/rp_trees.png" path-detail="posts/rp_trees.png" alt="ReportPortal" %}
+{% include image.html path="posts/rp_site.png" path-detail="posts/rp_site.png" alt="ReportPortal" %}
 
 Итак, вот и наступил тот замечательный день, когда мы наконец убрали тонны инкапсуляций и дали возможность расширять Java-based клиента. Просили об этом уже очень долго, имплементить это было не сложно - поскольку клиент значительно переписывался под асинхронный репортинг, покосить private'ы не составляло труда. Встречаем.
 
