@@ -14,9 +14,9 @@ sitemap: false
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700;subset=cyrillic" rel="stylesheet">
 
   {% if site.blog_theme == "light" %}
-    {% stylesheet notfound-light %}
+    {% asset notfound-light %}
   {% else %}
-    {% stylesheet notfound-dark %}
+    {% asset notfound-dark %}
   {% endif %}
 </head>
 <body>
