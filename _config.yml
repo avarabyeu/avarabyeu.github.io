@@ -22,7 +22,7 @@ social:
   bitcoin: # Add your Bitcoin link or address
 
 # Important settings (change at own risk)
-
+encoding: UTF-8
 assets:
   compress:
     css: true
@@ -35,7 +35,7 @@ assets:
     - _assets/images
     - _assets/javascripts
     - _assets/stylesheets
-    - _vendor/
+    - vendor/
 collections:
   my_tags:
     output: true
@@ -61,4 +61,6 @@ gems:
   - jekyll-assets
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-assets
+
 permalink: posts/:slug
