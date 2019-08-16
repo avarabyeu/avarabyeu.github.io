@@ -35,7 +35,7 @@ assets:
     - _assets/images
     - _assets/javascripts
     - _assets/stylesheets
-    - vendor/
+#    - vendor/bundle
 collections:
   my_tags:
     output: true
@@ -57,10 +57,9 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor/
-gems:
+plugins:
   - jekyll-assets
   - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-assets
 
 permalink: posts/:slug
