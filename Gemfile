@@ -10,3 +10,4 @@ gem "mini_magick"
 gem "sass"
 gem "uglifier"
 gem "sprockets", "~> 3.7"
+gem 'mini_racer'
