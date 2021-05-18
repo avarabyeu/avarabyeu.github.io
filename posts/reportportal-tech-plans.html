@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Automated Testing in the raw | ReportPortal. Технический взгляд на развитие проекта</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="ReportPortal. Технический взгляд на развитие проекта">
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://avarabyeu.me/posts/reportportal-tech-plans">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Automated Testing in the raw">
+  <meta property="og:image" content="http://avarabyeu.me/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png">
+
+  <!-- <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://avarabyeu.me/posts/reportportal-tech-plans">
+  <meta name="twitter:title" content="ReportPortal. Технический взгляд на развитие проекта">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://avarabyeu.me/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700;subset=cyrillic|Lato:300,400,700;subset=cyrillic" rel="stylesheet">
+
+  <link rel="apple-touch-icon" href="/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png">
+  <link href="http://avarabyeu.me/feed.xml" type="application/rss+xml" rel="alternate" title="Automated Testing in the raw Last 10 blog posts" />
+
+  
+    <link rel="stylesheet" type="text/css" href="/assets/light-200ef49d8fe894a3c07e296c2c5980d80ea96d5abc003bcfa496d7cfce20780b.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Automated Testing in the raw">Automated Testing in the raw</a>
+  <ul class="header-links">
+    <li>
+      <a href="/about" title="About">
+        <span class="icon icon-person"></span>
+      </a>
+    </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/avarabyeu" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/avarabyeu" target="_blank" title="LinkedIn">
+          <span class="icon icon-social-linkedin"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+  <div class="header-description">-Technologies? Quality?<br>-No, thanks. Just business value</div>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>ReportPortal. Технический взгляд на развитие проекта</h1>
+            <p></p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 15, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tags/#ru">ru</a>
+                
+                  <a href="/tags/#tech">tech</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/rp_trees-56db08e496114cd91dd33245107ecab81a9e7549a30b97334b394b88fe4881e6.png" class="fluidbox-trigger">
+  <img src="/assets/posts/rp_trees-56db08e496114cd91dd33245107ecab81a9e7549a30b97334b394b88fe4881e6.png" alt="ReportPortal" />
+</a></p>
+
+<p>Чаще всего, приходя на различные конференции и митапы, в контексте ReportPortal, вы слышите о планах относительно бизнес функциональности. В лучше случае, скупые подробности о том, что хотелось бы улучшить в техническом плане.</p>
+
+<p>Давайте попробуем посмотреть на проект с исключительно технической точки зрения и подумаем, куда стоит двигать и что менять глобально. Итак, список проблем мне, как разработчику, очевиден:</p>
+
+<p><strong>Highly-coupled microservices</strong></p>
+
+<p>Новый, недавно изобретенный паттерн проектирования :). Заключается в том, что при переносе монолитной архитектуры в микросервисную, огромная часть функционала так и остается сильно\жестко связанной. Мы пока тоже на этом пути - много общих зависимостей между сервисами, невозможность скейлить некоторые из них и т.д. Радует то, что эта проблема очевидна не только мне, но и менеджменту, а значит будет постепенно фикситься не только моими одинокими вечерами за лэптопом :)</p>
+
+<p><strong>Service Registry</strong></p>
+
+<p>Идея, сама по себе, православная. Подход Gateway/Registry/Services дал нам возможность добавлять функциональность как плагины, плюс является хорошим заделом для инсталляции на продакшне - такая схема позволяет легко и удобно скейлить приложение, не заморачиваясь сильно с DevOps задачами. Но, к сожалению, выбранный технологический стек разочаровал. Сейчас ReportPortal крутится на Netflix OSS стеке - Eureka (Service Registry), Zuul (Gateway), Ribbon (Load Balancing Client). В целом основные претензии как раз к Eureka - очень долгая регистрация сервисов бесит людей, умершие инстансы сервисов временами остаются в регистре (вроде как пофикшено, но все равно на 110% гарантировать сложно), какое-то время после старта инстанса Zuul роутит траффик и почему-то возвращает HTTP 200, хотя сам сервис еще не отвечает, либо не зарегистрировался полностью. Плюс, как дополнительный эффект - все это написано на Java, а значит забирает кучу оперативной памяти, делая приложение черезчур тяжелым. В общем, даже не смотря на то, что все это работает относительно стабильно на нашем продакшне, впечатление так себе и фиксить текущие проблемы не особо-то и тянет. У <a href="https://github.com/Netflix/eureka">Eureka</a> сейчас основной конкурент <a href="https://www.consul.io/">Consul</a> - это в контексте интеграции со Spring Cloud, на котором построена все экосистема проекта. Переключив все на consul был крайне удивлен - аптайм уменьшился в разы, инстансы регистрируются и убиваются моментально и без всяческих проблем. Вероятнее всего, какие-то проблемы все-таки вылезут при дотошном тестировании, на поддержка Consul однозначно появится в ReportPortal 3.0 релизе, пусть даже и не в виде дефолтного параметра.</p>
+
+<p><strong>Потребление ресурсов</strong></p>
+
+<p>Java, чет ее побери! Слово Java нужно законодательно запретить ставить в одно предложение со словом microservices. Даже не смотря на то, что ReportPortal ни разу пока не является микросервисным приложением. Некоторое время назад поигрался с Golang и был в полном шоке от того, насколько меньше системных ресурсов потребляет этот язык. К слову, это легко можно проследить, если запустить Eureka(который написан на Java) и Consul (который написан на Go). Например, обычный REST сервис, который ничего не делает, кроме как возвращает health-чеки, скушал у меня около 5мб оперативки и это уже будучи запакованным в контейнер! Например, наш UI сервис потребляет не менее 256. Ок, грубо спишем половину на кэш статики, но разница все равно более чем в 20 раз! Давайте немного посчитаем. У нас есть как минимум три сервиса, которые можно легко перевести на Go: Registry (меняем Eureka на Consul), Gateway (меняем Zuul, например, на <a href="https://github.com/containous/traefik">Traefik</a>), UI Service (тупо переписываем, ибо все пару классов). В итоге с каждого приложения экономим как минимум 200мб и получаем неплохой профит - 600 мб просто переконфигурировав систему!</p>
+
+<p><strong>Синхронный репортинг</strong></p>
+
+<p>Это проблема скорее, на клиентской стороне. И Java клиент (или “агент”, кому как больше нравится), в скором времени станет асинхронным. Тем не менее, с точки зрения сервера тоже есть что улучшить. Например, пост логов – вам 100% не нужен будет айди лога в респонсе, а посему эту операцию легко можно сделать асинхронной. Пришел запрос, сервер ответил чем-то типа “Окей, брат, Accepted”, вернул ответ клиенту и начал процессить в отдельном потоке. Но такой подход создает одну небольшую проблему: если лог по какой-то причине не может быть сохранен, то клиент никогда об этом не узнает, ведь сервер всегда сперва отвечает OK, а только потом начинает работу работать. Можно было бы это решить добавлением какой-то дополнительной коллекции в которой бы хранились ошибки всех асинхронных операций. Тогда человек смог бы время от времени открывать страничку и смотреть, все ли у него нормально репортится. Но это уже работа для UI команды, а значит, нужно добавлять эту задачу в спринт команды, планировать время, объяснять менеджерам зачем это нужно и т.д. Тем не менее, к такому подходу ReportPortal все равно придет и, опять же, скорее всего в ближайших релизах.</p>
+
+<p><strong>Синхронное взаимодействие UI и back-end портала</strong></p>
+
+<p>Long-pooling, черт побери! Чтобы вы видели динамику на своей страничке, UI каждые пару секунд делает одинаковые запросы на бэкэнд, тем на самым нагружая его. Не то, чтобы выборки были очень тяжелыми, но тем не менее - это далеко не самый лучших подход. Давно уже есть идея заменить long pooling на Server-Sent-Events или Websockets, т.е. ввести эвенты, давая серверу возможность самому говорить UI что изменилось. Это же решило бы проблему нотификации пользователя о том, что асинхронная операция (например, автоанализ), завершена.</p>
+
+<p><strong>Автоанализ</strong></p>
+
+<p>Хотелось, бы, конечно, улучшить имплементацию. Пока я вижу два пути это сделать:</p>
+<ul>
+  <li>Быстрый - добавляем ElasticSearch и отдаем всю работу по поиску подходящих ошибок туда. Как это сделано сейчас даже рассказывать не буду - смотрите сами :) На самом деле, ES не идеально подходит для такого рода задач, но попробовать стоит.</li>
+  <li>Длинный - Machine Learning. Пожалуй, идеальное решение. Вопрос только в том, что написание и обучение модели займет достаточно много времени и заставит углубиться в математику, которая для меня умерла в районе второго курса университета. К счастью, эту задачу делегировали в один из профильных отделов EPAM - что у них там получится - посмотрим.</li>
+</ul>
+
+<p><strong>А что хотели бы изменить Вы?</strong>
+Пишите в комментарии, на почту, в социальные сети - мне, как разработчику, очень интересно узнать ваш взгляд на продукт именно с технической точки зрения</p>
+
+          </div>
+
+          <div class="article-share">
+            
+
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=ReportPortal. Технический взгляд на развитие проекта - http://avarabyeu.me/posts/reportportal-tech-plans ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://avarabyeu.me/posts/reportportal-tech-plans', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://avarabyeu.me/posts/reportportal-tech-plans', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//avarabyeusblog.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    <h5><a href="/about" title="About me">О Блоге</a>/<a href="/tags" title="Теги">Теги</a></h5>
+  </p>
+  <p><br></p>
+  <p>
+    Powered by Jekyll using <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">Chalk theme</a>. Favicon designed by Zlatko Najdenovski from Flaticon
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor-28cbcacd004fecd98abdb9a8cd51ee0345d4242191bda6b380fd28ed3b9302e2.js"></script>
+<script type="text/javascript" src="/assets/application-6762712d9a8e39a3395854278ea5c09852da877d3d133c90bc0c45406354753c.js"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script> -->
+<!-- <script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script> -->
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-78777980-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

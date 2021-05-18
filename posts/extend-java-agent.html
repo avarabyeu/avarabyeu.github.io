@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Automated Testing in the raw | ReportPortal. Расширяем Java агента</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="ReportPortal. Расширяем Java агента">
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://avarabyeu.me/posts/extend-java-agent">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Automated Testing in the raw">
+  <meta property="og:image" content="http://avarabyeu.me/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png">
+
+  <!-- <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="http://avarabyeu.me/posts/extend-java-agent">
+  <meta name="twitter:title" content="ReportPortal. Расширяем Java агента">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="http://avarabyeu.me/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png"> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:700;subset=cyrillic|Lato:300,400,700;subset=cyrillic" rel="stylesheet">
+
+  <link rel="apple-touch-icon" href="/assets/professor-7cf43c5610583325ac9c38f1221d877fe0630456bfeb6bf1eefe785cf1f7bba0.png">
+  <link href="http://avarabyeu.me/feed.xml" type="application/rss+xml" rel="alternate" title="Automated Testing in the raw Last 10 blog posts" />
+
+  
+    <link rel="stylesheet" type="text/css" href="/assets/light-200ef49d8fe894a3c07e296c2c5980d80ea96d5abc003bcfa496d7cfce20780b.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Automated Testing in the raw">Automated Testing in the raw</a>
+  <ul class="header-links">
+    <li>
+      <a href="/about" title="About">
+        <span class="icon icon-person"></span>
+      </a>
+    </li>
+    
+    
+    
+      <li>
+        <a href="https://github.com/avarabyeu" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.linkedin.com/in/avarabyeu" target="_blank" title="LinkedIn">
+          <span class="icon icon-social-linkedin"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+  <div class="header-description">-Technologies? Quality?<br>-No, thanks. Just business value</div>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>ReportPortal. Расширяем Java агента</h1>
+            <p></p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                June 1, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  5 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tags/#ru">ru</a>
+                
+                  <a href="/tags/#tech">tech</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p><a href="/assets/posts/rp_site-24db39fba13ffed309f1116ff8dfea9c5355e4e4d81f348093f7e55b5233c5b9.png" class="fluidbox-trigger">
+  <img src="/assets/posts/rp_site-24db39fba13ffed309f1116ff8dfea9c5355e4e4d81f348093f7e55b5233c5b9.png" alt="ReportPortal" />
+</a></p>
+
+<p>Итак, вот и наступил тот замечательный день, когда мы наконец убрали тонны инкапсуляций и дали возможность расширять Java-based клиента. Просили об этом уже очень долго, имплементить это было не сложно - поскольку клиент значительно переписывался под асинхронный репортинг, покосить private’ы не составляло труда. Встречаем.</p>
+
+<p><strong>RP Java Client v3.x</strong></p>
+
+<p>Пару слов о новом клиенте. Как уже было замечено выше, написано все это дело теперь в асинхронном стиле, с использванием RXJava. Долго думал - RXJava или Reactor. Второй привлекал более адекватным (на мой взгляд) апи и родственными связями со Spring Framework. Значит, уже совсем скоро, с выходом Spring Framework v5 и Spring Boot v2 станет крайне популярен. Но, гвозди в крышку гроба фреймворка от Netflix решительно забивал тот факт, что Reactor написан исключительно под JDK 1.8, а среди наших клиентов есть люди крайне <del>обиженные жизнью</del>старомодные (банки), могут и на 1.6 еще сидеть.
+Итак, клиентик асинхронный. Дабы избавить потенциальных контрибьюторов от боли связанной с коллбэками и ожиданиями, зашил все в один класс - ReportPortal (как ни странно)
+По сути, это и есть точка, через которую происходит репортинг - выглядит на первый взгляд очень похоже на то что было и раньше, разве что промисы <code class="highlighter-rouge">(Maybe&lt;ID&gt;)</code> возвращается вместо самих айдишников.</p>
+
+<p><strong>Так как тут что расширять?</strong></p>
+
+<p>Хорошо это или плохо, но пока Guice остался центральным звеном, через которое происходит конфигурация всего клиента. Часто слышал критику - можно было и на обычных фэкторях вальнуть. Наверное, так и есть. Но сегодня на примере попытаюсь объяснить, почему с Guice работать все-таки удобно. Один из самых типичных вопросов\просьб - “дайте добавить тэги на рантайме”. Давайте подумаем - что для этого нужно? Очевидно, нужно найти то место, которое отправляет запрос, куда эти самые тэги вкладываются. Речь идет о запросе на создание сьюта\теста\степа. Мы для простоты называем их тест айтемами. У каждого тест айтема есть тип - собственно, SUITE,STORY,TEST,SCENARIO,STEP и т.д.
+Итак, мы знаем что всю эту информацию связанную с репортингом тест айтемов клиент узнает посредством листенера. Листенер делегирует вызовы в <code class="highlighter-rouge">com.epam.reportportal.testng.TestNGService</code>, но сперва создает контекст Guice. В этот момент происходит чтение пропертей и инициализация (не всегда, если не lazy) бинов, которые в этом контекстве проспецифицированы. Guice прост. Он основан на так называемых модулях - по сути, классах-конфигурациях. И его преимущество в том, что эти модули можно расширять, переопределять и вообще все что хочешь с ними делать. В нашем случае - нам нужно переопределить тот самый <code class="highlighter-rouge">TestNGService</code>. Смотрим на листенер:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaseTestNGListener</span> <span class="kd">implements</span> <span class="nc">IExecutionListener</span><span class="o">,</span> <span class="nc">ISuiteListener</span><span class="o">,</span> <span class="nc">IResultListener2</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="kd">public</span> <span class="nf">BaseTestNGListener</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Module</span><span class="o">...</span> <span class="n">extensions</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="nc">Injector</span><span class="o">.</span><span class="na">createDefault</span><span class="o">(</span><span class="n">extensions</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">BaseTestNGListener</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Injector</span> <span class="n">injector</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="k">new</span> <span class="nc">Supplier</span><span class="o">&lt;</span><span class="nc">ITestNGService</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="nc">ITestNGService</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">injector</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="nc">ITestNGService</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="nf">BaseTestNGListener</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Supplier</span><span class="o">&lt;</span><span class="nc">ITestNGService</span><span class="o">&gt;</span> <span class="n">testNgService</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">isSuiteStarted</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+        <span class="n">testNGService</span> <span class="o">=</span> <span class="n">memoize</span><span class="o">(</span><span class="n">testNgService</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="o">...</span>
+</code></pre></div></div>
+<p>Как видим, эти модули нужно передать в конструктор, вся остальная магия остается за кадром. Стандартных модулей несколько:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ConfigurationModule</code> содержит в себе все что связано с конфигурацией. Например, чтение пропертей из проперти файла.</li>
+  <li><code class="highlighter-rouge">ReportPortalClientModule</code> - основной модуль. Тут Http клиент, тот самый <code class="highlighter-rouge">ReportPortal</code> класс и все что им необходимо.</li>
+</ul>
+
+<p>В нашем случае мы используем TestNG и в проекте этого агента есть еще один дополнительный модуль</p>
+<ul>
+  <li><code class="highlighter-rouge">TestNGAgentModule</code> - там как раз-таки и лежит то, что мы собираемся расширять - <code class="highlighter-rouge">TestNGService</code></li>
+</ul>
+
+<p>Итак, наследуемся от этого класса и находим в нем метод, который <code class="highlighter-rouge">готовит</code> запрос на создание теста (степа, сьюта, выберите по вкусу):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="nc">StartTestItemRQ</span> <span class="nf">buildStartStepRq</span><span class="o">(</span><span class="nc">ITestResult</span> <span class="n">testResult</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">testResult</span><span class="o">.</span><span class="na">getAttribute</span><span class="o">(</span><span class="no">RP_ID</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="nc">StartTestItemRQ</span> <span class="n">rq</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StartTestItemRQ</span><span class="o">();</span>
+      <span class="nc">String</span> <span class="n">testStepName</span> <span class="o">=</span> <span class="n">testResult</span><span class="o">.</span><span class="na">getMethod</span><span class="o">().</span><span class="na">getMethodName</span><span class="o">();</span>
+      <span class="n">rq</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">testStepName</span><span class="o">);</span>
+
+      <span class="n">rq</span><span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="n">createStepDescription</span><span class="o">(</span><span class="n">testResult</span><span class="o">));</span>
+      <span class="n">rq</span><span class="o">.</span><span class="na">setStartTime</span><span class="o">(</span><span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">getTime</span><span class="o">());</span>
+      <span class="n">rq</span><span class="o">.</span><span class="na">setType</span><span class="o">(</span><span class="nc">TestMethodType</span><span class="o">.</span><span class="na">getStepType</span><span class="o">(</span><span class="n">testResult</span><span class="o">.</span><span class="na">getMethod</span><span class="o">()).</span><span class="na">toString</span><span class="o">());</span>
+      <span class="k">return</span> <span class="n">rq</span><span class="o">;</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+
+<p>Расширяем:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTestNgService</span> <span class="kd">extends</span> <span class="nc">TestNGService</span> <span class="o">{</span>
+
+<span class="kd">public</span> <span class="nf">MyTestNgService</span><span class="o">(</span><span class="nc">ListenerParameters</span> <span class="n">parameters</span><span class="o">,</span> <span class="nc">ReportPortalClient</span> <span class="n">reportPortalClient</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">(</span><span class="n">parameters</span><span class="o">,</span> <span class="n">reportPortalClient</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="nc">StartTestItemRQ</span> <span class="nf">buildStartStepRq</span><span class="o">(</span><span class="nc">ITestResult</span> <span class="n">testResult</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">//вызываем родителя и создаем валидный объект запроса</span>
+    <span class="kd">final</span> <span class="nc">StartTestItemRQ</span> <span class="n">rq</span> <span class="o">=</span> <span class="kd">super</span>
+            <span class="o">.</span><span class="na">buildStartStepRq</span><span class="o">(</span><span class="n">testResult</span><span class="o">);</span>
+
+    <span class="c1">//добавляем наш новый важный тэг и те тэги, которые были добавлены по дефолту</span>
+    <span class="n">rq</span><span class="o">.</span><span class="na">setTags</span><span class="o">(</span><span class="nc">ImmutableSet</span><span class="o">.&lt;</span><span class="nc">String</span><span class="o">&gt;</span><span class="n">builder</span><span class="o">()</span>
+            <span class="o">.</span><span class="na">addAll</span><span class="o">(</span><span class="n">rq</span><span class="o">.</span><span class="na">getTags</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"my_very_improtant_tag"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">());</span>
+    <span class="k">return</span> <span class="n">rq</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="o">...</span>
+</code></pre></div></div>
+<p>Отлично! Теперь осталось сказать репорт порталу, что нужно использовать вашу имплементацию, вместо стандартной.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyRpListener</span> <span class="kd">extends</span> <span class="nc">BaseTestNGListener</span> <span class="o">{</span>
+    <span class="c1">// делаем свой листенер</span>
+    <span class="kd">public</span> <span class="nf">MyRpListener</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//'переопредели стандартны модуль TestNGAgentModule' другим</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">override</span><span class="o">(</span><span class="k">new</span> <span class="nc">TestNGAgentModule</span><span class="o">()).</span><span class="na">with</span><span class="o">(</span>
+                <span class="o">(</span><span class="nc">Module</span><span class="o">)</span> <span class="n">binder</span> <span class="o">-&gt;</span> <span class="n">binder</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="nc">ITestNGService</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">toProvider</span><span class="o">(</span><span class="k">new</span> <span class="nc">TestNGProvider</span><span class="o">()</span> <span class="o">{</span>
+                    <span class="nd">@Override</span>
+                    <span class="kd">protected</span> <span class="nc">TestNGService</span> <span class="nf">createTestNgService</span><span class="o">(</span>
+                            <span class="nc">ListenerParameters</span> <span class="n">listenerParameters</span><span class="o">,</span>
+                            <span class="nc">ReportPortalClient</span> <span class="n">reportPortalClient</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="k">return</span> <span class="k">new</span> <span class="nf">MyTestNgService</span><span class="o">(</span><span class="n">listenerParameters</span><span class="o">,</span> <span class="n">reportPortalClient</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">})));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Вот и все. Теперь можем использовать <code class="highlighter-rouge">MyRpListener</code> как обычно - добавлять в pom.xml\build.gradle и иже с ними. Сложно? По-моему, не очень. Расширяемо? Вполне. Париться откуда взять зависимости типа ReportPortalClient или ListenerParameters нужно? Нет. Именно поэтому Guice, а не рукотворные костыле-фабрики. Инжой!</p>
+
+<p><strong>Вопросы и комментарии категорически приветствуются!</strong></p>
+
+          </div>
+
+          <div class="article-share">
+            
+
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=ReportPortal. Расширяем Java агента - http://avarabyeu.me/posts/extend-java-agent ', 'newwindow', 'width=500, height=225'); return false;">
+              <span class="icon icon-social-twitter"></span>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=http://avarabyeu.me/posts/extend-java-agent', 'newwindow', 'width=500, height=500'); return false;">
+              <span class="icon icon-social-facebook"></span>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=http://avarabyeu.me/posts/extend-java-agent', 'newwindow', 'width=550, height=400'); return false;">
+              <span class="icon icon-social-googleplus"></span>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//avarabyeusblog.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    <h5><a href="/about" title="About me">О Блоге</a>/<a href="/tags" title="Теги">Теги</a></h5>
+  </p>
+  <p><br></p>
+  <p>
+    Powered by Jekyll using <a href="https://github.com/nielsenramon/chalk" target="_blank" title="Download Chalk">Chalk theme</a>. Favicon designed by Zlatko Najdenovski from Flaticon
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor-28cbcacd004fecd98abdb9a8cd51ee0345d4242191bda6b380fd28ed3b9302e2.js"></script>
+<script type="text/javascript" src="/assets/application-6762712d9a8e39a3395854278ea5c09852da877d3d133c90bc0c45406354753c.js"></script>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script> -->
+<!-- <script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script> -->
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-78777980-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

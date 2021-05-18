@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://avarabyeu.me/posts/skills-vs-potential</loc>
+<lastmod>2016-05-29T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://avarabyeu.me/posts/sec-fall-16</loc>
+<lastmod>2016-10-05T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://avarabyeu.me/posts/reportportal-tech-plans</loc>
+<lastmod>2017-01-15T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://avarabyeu.me/posts/extend-java-agent</loc>
+<lastmod>2017-06-01T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://avarabyeu.me/posts/heisenbug-piter-17</loc>
+<lastmod>2017-06-05T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://avarabyeu.me/about/</loc>
+</url>
+<url>
+<loc>http://avarabyeu.me/tags/</loc>
+</url>
+<url>
+<loc>http://avarabyeu.me/</loc>
+</url>
+</urlset>

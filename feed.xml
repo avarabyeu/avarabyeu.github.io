@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Automated Testing in the raw</title>
+    <description>-Technologies? Quality?&lt;br&gt;-No, thanks. Just business value</description>
+    <link>http://avarabyeu.me</link>
+    <atom:link href="http://avarabyeu.me/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>Гейзенбаг. А где хардкор?</title>
+        <description></description>
+        <pubDate>Mon, 05 Jun 2017 00:00:00 +0000</pubDate>
+        <link>http://avarabyeu.me/posts/heisenbug-piter-17</link>
+        <guid isPermaLink="true">http://avarabyeu.me/posts/heisenbug-piter-17</guid>
+      </item>
+    
+      <item>
+        <title>ReportPortal. Расширяем Java агента</title>
+        <description></description>
+        <pubDate>Thu, 01 Jun 2017 00:00:00 +0000</pubDate>
+        <link>http://avarabyeu.me/posts/extend-java-agent</link>
+        <guid isPermaLink="true">http://avarabyeu.me/posts/extend-java-agent</guid>
+      </item>
+    
+      <item>
+        <title>ReportPortal. Технический взгляд на развитие проекта</title>
+        <description></description>
+        <pubDate>Sun, 15 Jan 2017 00:00:00 +0000</pubDate>
+        <link>http://avarabyeu.me/posts/reportportal-tech-plans</link>
+        <guid isPermaLink="true">http://avarabyeu.me/posts/reportportal-tech-plans</guid>
+      </item>
+    
+      <item>
+        <title>EPAM SEC Fall'16. Впечатления</title>
+        <description></description>
+        <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
+        <link>http://avarabyeu.me/posts/sec-fall-16</link>
+        <guid isPermaLink="true">http://avarabyeu.me/posts/sec-fall-16</guid>
+      </item>
+    
+      <item>
+        <title>Навыки vs. потенциал или что ожидается от junior'a</title>
+        <description>Навыки и потенциал или как успешно пройти интервью на junior-позицию</description>
+        <pubDate>Sun, 29 May 2016 00:00:00 +0000</pubDate>
+        <link>http://avarabyeu.me/posts/skills-vs-potential</link>
+        <guid isPermaLink="true">http://avarabyeu.me/posts/skills-vs-potential</guid>
+      </item>
+    
+  </channel>
+</rss>
