@@ -6,7 +6,7 @@ modified: 2015-06-05
 tags: [ru, hiring, junior]
 lang: ru
 comments: true
-share: true
+share: false
 
 published: true
 ---

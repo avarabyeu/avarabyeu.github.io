@@ -6,7 +6,7 @@ modified: 2017-06-05
 tags: [ru, conferences]
 lang: ru
 comments: true
-share: true
+share: false
 
 image:
   feature:

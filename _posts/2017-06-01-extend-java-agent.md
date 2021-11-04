@@ -6,7 +6,7 @@ modified: 2017-06-01
 tags: [ru, tech]
 lang: ru
 comments: true
-share: true
+share: false
 
 image:
   feature:
