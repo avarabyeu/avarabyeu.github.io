@@ -6,7 +6,7 @@ modified: 2015-06-14
 tags: [ru, notech, education]
 lang: ru
 comments: true
-share: false
+share: true
 
 image:
   feature: bezvrednaya-posuda-dla-gotovki1.jpg

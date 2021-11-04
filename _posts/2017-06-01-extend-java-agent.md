@@ -6,12 +6,12 @@ modified: 2017-06-01
 tags: [ru, tech]
 lang: ru
 comments: true
-share: false
+share: true
 
 image:
   feature:
 
-published: true
+published: false
 ---
 {% include image.html path="posts/rp_site.png" path-detail="posts/rp_site.png" alt="ReportPortal" %}
 

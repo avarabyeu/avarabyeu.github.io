@@ -6,12 +6,12 @@ modified: 2017-06-05
 tags: [ru, conferences]
 lang: ru
 comments: true
-share: false
+share: true
 
 image:
   feature:
 
-published: true
+published: false
 ---
 {% include image.html path="posts/heisenbug-logo@2x.png" path-detail="posts/heisenbug-logo@2x.png" alt="Heisenbug" %}
 
