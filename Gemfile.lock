@@ -6,7 +6,7 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.7.0)
+    addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.7.4)
       execjs
@@ -69,6 +69,7 @@ GEM
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (1.17.0)
+    libv8-node (15.14.0.1)
     liquid (4.0.3)
     liquid-tag-parser (1.9.0)
       extras (~> 0.3)
@@ -78,16 +79,20 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.3.6)
     mini_magick (4.10.1)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.6.1)
+    mini_racer (0.4.0)
+      libv8-node (~> 15.14.0.0)
     minitest (5.14.1)
-    nokogiri (1.10.7)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.12.5)
+      mini_portile2 (~> 2.6.1)
+      racc (~> 1.4)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
     parallel (1.19.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    public_suffix (4.0.3)
+    public_suffix (4.0.6)
+    racc (1.6.0)
     rack (2.2.3)
     rainbow (3.0.0)
     rb-fsevent (0.10.3)
@@ -123,6 +128,7 @@ DEPENDENCIES
   jekyll-paginate
   jekyll-sitemap
   mini_magick
+  mini_racer
   sass
   sprockets (~> 3.7)
   uglifier
