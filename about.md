@@ -1,12 +1,12 @@
 ---
 layout: about
-title: О себе
+title: About me
 permalink: /about/
 
 
 comments: false
-modified: 2016-05-26
-lang: ru
+modified: 2020-11-05
+lang: en
 ---
 
 ### Доброго времени суток!
