@@ -1,4 +1,5 @@
 <footer>
-  <span>© Andrei Varabyeu</span>
+  <span>© Andrei Varabyeu
+    {{- if partial "analytics-id.html" . }} · <button type="button" class="linklike" data-consent-open hidden>cookie settings</button>{{ end }}</span>
   <span>Built with Hugo · Hosted on GitHub Pages</span>
 </footer>

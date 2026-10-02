@@ -1,0 +1,2 @@
+{{- /* The GA4 Measurement ID when analytics should run (production build + ID configured), else "". */ -}}
+{{- return cond hugo.IsProduction site.Config.Services.GoogleAnalytics.ID "" -}}

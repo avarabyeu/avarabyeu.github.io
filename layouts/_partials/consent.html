@@ -1,0 +1,10 @@
+{{- with partial "analytics-id.html" . }}
+{{- /* Hidden until consent.js decides to show it, so with scripting off there is neither banner nor analytics. */}}
+<div id="consent" class="consent" role="region" aria-label="Analytics consent" data-ga-id="{{ . }}" hidden>
+  <p>I'd like to use Google Analytics cookies to see how many people visit and what they read. Nothing is loaded unless you accept.</p>
+  <div class="consent-actions">
+    <button type="button" class="btn" data-consent="decline">Decline</button>
+    <button type="button" class="btn" data-consent="accept">Accept</button>
+  </div>
+</div>
+{{- end }}

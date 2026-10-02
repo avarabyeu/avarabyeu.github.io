@@ -226,3 +226,20 @@ footer{padding-block:26px;font-family:var(--font-mono);font-size:0.72rem;color:v
 .prose pre{background:var(--surface);border:1px solid var(--line);padding:16px;overflow-x:auto;}
 .prose pre code{background:none;padding:0;}
 .page .section-head a{color:var(--accent);}
+
+/* ---- analytics consent ---- */
+.consent{
+  position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;
+  width:min(640px,calc(100% - 32px));
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;
+  background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--accent);
+  padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+.consent[hidden]{display:none;}
+.consent p{margin:0;flex:1 1 300px;font-size:0.88rem;line-height:1.5;color:var(--ink-soft);}
+.consent-actions{display:flex;gap:10px;}
+/* equal weight on purpose: declining must be as easy as accepting */
+.consent .btn{background:transparent;cursor:pointer;}
+.consent .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.linklike{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+.linklike:hover,.linklike:focus-visible{color:var(--accent);}
