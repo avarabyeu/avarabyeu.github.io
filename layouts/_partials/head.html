@@ -1,5 +1,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{- with partial "analytics-id.html" . }}
+{{- /* Inactive copy of Google's tag snippet, so tag checkers can find the ID in the source. Browsers neither
+       fetch nor run type="text/plain"; consent.js loads the real tag only after the visitor accepts. */}}
+<script type="text/plain" data-consent-category="analytics" src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+{{- end }}
 <meta name="color-scheme" content="light dark">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 <meta name="description" content="{{ .Description | default site.Params.description }}">
