@@ -1,0 +1,21 @@
+{{- $c := .card -}}
+<div class="card{{ if .lead }} flagship{{ end }}"{{ with $c.id }} id="{{ . }}"{{ end }}>
+  <h4>{{ $c.title }}</h4>
+  <div class="meta">{{ $c.meta }}</div>
+  <dl>
+    {{- range $key := slice "problem" "approach" "outcome" "what" }}
+    {{- with index $c $key }}
+    <div><dt>{{ title $key }}</dt><dd>{{ . }}</dd></div>
+    {{- end }}
+    {{- end }}
+  </dl>
+  {{- with $c.tags }}
+  <div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+  {{- end }}
+  {{- with $c.link }}
+  <a class="link" href="{{ .url }}" target="_blank" rel="noopener">{{ .label }} →</a>
+  {{- end }}
+  {{- with $c.diagram }}
+  {{- partial (printf "diagrams/%s.html" .) . }}
+  {{- end }}
+</div>

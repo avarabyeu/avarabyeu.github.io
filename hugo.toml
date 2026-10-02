@@ -1,0 +1,9 @@
+baseURL = 'https://avarabyeu.me/'
+locale = 'en'
+title = 'Andrei Varabyeu'
+
+disableKinds = ['taxonomy', 'term']
+enableRobotsTXT = true
+
+[params]
+description = 'Solutions architect who takes startups from initiative to production-ready platform.'

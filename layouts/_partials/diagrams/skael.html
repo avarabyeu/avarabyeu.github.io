@@ -1,0 +1,54 @@
+<figure class="fig">
+  <svg viewBox="0 0 660 316" role="img" aria-label="Tenant users send natural-language requests to a per-tenant RASA instance, which triggers durable workflows in a Temporal-based process automation platform. A custom Golang operator on the control plane reconciles one isolated RASA instance per tenant.">
+    <defs>
+      <marker id="mk-a" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <!-- tier A: users -->
+    <rect x="150" y="14" width="490" height="46" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="164" y="34" font-size="12.5" fill="currentColor">Tenant users</text>
+    <text x="164" y="50" font-size="10.5" fill="currentColor" opacity="0.6">natural-language requests</text>
+
+    <line x1="395" y1="60" x2="395" y2="92" stroke="currentColor" stroke-width="1" marker-end="url(#mk-a)"/>
+    <text x="407" y="80" font-size="10.5" fill="currentColor" opacity="0.75">intent</text>
+
+    <!-- tier B: per-tenant conversational layer -->
+    <rect x="150" y="92" width="490" height="118" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.55"/>
+    <text x="164" y="110" font-size="10.5" fill="currentColor" opacity="0.7">conversational layer — one isolated RASA instance per tenant</text>
+
+    <rect x="168" y="128" width="140" height="62" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="238" y="147" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Tenant A</text>
+    <text x="238" y="166" text-anchor="middle" font-size="11" fill="currentColor">RASA instance</text>
+    <text x="238" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">own model + config</text>
+
+    <rect x="320" y="128" width="140" height="62" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="390" y="147" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Tenant B</text>
+    <text x="390" y="166" text-anchor="middle" font-size="11" fill="currentColor">RASA instance</text>
+    <text x="390" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">own model + config</text>
+
+    <rect x="472" y="128" width="140" height="62" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="542" y="147" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.65">Tenant C</text>
+    <text x="542" y="166" text-anchor="middle" font-size="11" fill="currentColor">RASA instance</text>
+    <text x="542" y="182" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">own model + config</text>
+
+    <!-- control plane: the operator -->
+    <text x="73" y="112" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.55">control plane</text>
+    <rect x="14" y="120" width="118" height="52" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <text x="73" y="142" text-anchor="middle" font-size="11.5" fill="currentColor">Golang Operator</text>
+    <text x="73" y="158" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">reconcile loop</text>
+    <line x1="132" y1="146" x2="150" y2="146" stroke="currentColor" stroke-width="1" marker-end="url(#mk-a)"/>
+    <text x="73" y="190" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">creates one instance</text>
+    <text x="73" y="203" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.7">per tenant</text>
+
+    <line x1="395" y1="210" x2="395" y2="242" stroke="currentColor" stroke-width="1" marker-end="url(#mk-a)"/>
+    <text x="407" y="230" font-size="10.5" fill="currentColor" opacity="0.75">triggers workflows</text>
+
+    <!-- tier C: automation core -->
+    <rect x="150" y="242" width="490" height="58" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="164" y="266" font-size="12.5" fill="currentColor">Process automation platform · Temporal</text>
+    <text x="164" y="284" font-size="10.5" fill="currentColor" opacity="0.6">durable workflows · retries · long-running business processes</text>
+  </svg>
+  <figcaption>Natural language in, durable automation out: a tenant's request is interpreted by that tenant's own RASA instance, which starts workflows on a Temporal core built to survive restarts and resume long-running processes. RASA ships single-tenant, so rather than fork it, the operator treats "a tenant" as a Kubernetes resource and reconciles a dedicated instance for each — multitenancy lives in the infrastructure layer, and RASA upgrades stay upstream.</figcaption>
+</figure>

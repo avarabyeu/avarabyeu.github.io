@@ -1,0 +1,26 @@
+<section id="work">
+  {{- partial "home/section-head.html" .head }}
+
+  {{- range $g := .groups }}
+  <div class="group reveal">
+    <div class="group-title"><h3>{{ .title }}</h3><div class="rule"></div></div>
+
+    {{- partial "home/card.html" (dict "card" .lead "lead" true) }}
+
+    {{- with .more }}
+    <div class="{{ if eq $g.layout "stack" }}stack-cards{{ else }}supporting-grid{{ end }}">
+      {{- range . }}
+      {{- partial "home/card.html" (dict "card" .) }}
+      {{- end }}
+    </div>
+    {{- end }}
+
+    {{- with .crossref }}
+    <p class="crossref">{{ . | markdownify }}</p>
+    {{- end }}
+  </div>
+  {{- with .figure }}
+  {{- partial (printf "diagrams/%s.html" .) . }}
+  {{- end }}
+  {{- end }}
+</section>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  {{- partial "head.html" . }}
+</head>
+<body>
+  <div id="cursor-dot"></div>
+
+  <div class="wrap">
+    {{- partial "nav.html" . }}
+    <main>
+      {{- block "main" . }}{{ end }}
+    </main>
+    {{- partial "footer.html" . }}
+  </div>
+</body>
+</html>

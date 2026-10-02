@@ -1,0 +1,65 @@
+<figure class="fig">
+  <svg viewBox="0 0 660 352" role="img" aria-label="WebDriver clients, Playwright clients and engineers working manually all enter through the Mobitru platform, which routes each session either to a farm of real mobile devices or to the BrowserKube operator, which schedules a browser pod per session on demand.">
+    <defs>
+      <marker id="mk-m" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+        <path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/>
+      </marker>
+    </defs>
+
+    <!-- entry points -->
+    <rect x="14" y="14" width="196" height="44" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="112" y="34" text-anchor="middle" font-size="11.5" fill="currentColor">WebDriver client</text>
+    <text x="112" y="50" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">existing test suites</text>
+
+    <rect x="232" y="14" width="196" height="44" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="330" y="34" text-anchor="middle" font-size="11.5" fill="currentColor">Playwright client</text>
+    <text x="330" y="50" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">existing test suites</text>
+
+    <rect x="450" y="14" width="196" height="44" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="548" y="34" text-anchor="middle" font-size="11.5" fill="currentColor">Engineer, by hand</text>
+    <text x="548" y="50" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">live interactive session</text>
+
+    <line x1="112" y1="58" x2="112" y2="86" stroke="currentColor" stroke-width="1" marker-end="url(#mk-m)"/>
+    <line x1="330" y1="58" x2="330" y2="86" stroke="currentColor" stroke-width="1" marker-end="url(#mk-m)"/>
+    <line x1="548" y1="58" x2="548" y2="86" stroke="currentColor" stroke-width="1" marker-end="url(#mk-m)"/>
+    <text x="342" y="78" font-size="10" fill="currentColor" opacity="0.75">session request</text>
+
+    <!-- platform -->
+    <rect x="90" y="86" width="480" height="56" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="330" y="110" text-anchor="middle" font-size="12.5" fill="currentColor">Mobitru platform</text>
+    <text x="330" y="128" text-anchor="middle" font-size="10.5" fill="currentColor" opacity="0.6">session routing · capabilities · quotas</text>
+
+    <!-- dispatch fan -->
+    <line x1="330" y1="142" x2="330" y2="172" stroke="currentColor" stroke-width="1"/>
+    <line x1="175" y1="172" x2="485" y2="172" stroke="currentColor" stroke-width="1"/>
+    <line x1="175" y1="172" x2="175" y2="196" stroke="currentColor" stroke-width="1" marker-end="url(#mk-m)"/>
+    <line x1="485" y1="172" x2="485" y2="196" stroke="currentColor" stroke-width="1" marker-end="url(#mk-m)"/>
+    <text x="175" y="166" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">mobile session</text>
+    <text x="485" y="166" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">browser session</text>
+
+    <!-- target: device farm -->
+    <rect x="40" y="196" width="270" height="134" fill="none" stroke="currentColor" stroke-width="1"/>
+    <text x="175" y="218" text-anchor="middle" font-size="11.5" fill="currentColor">Real device farm</text>
+    <text x="175" y="234" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">physical phones &amp; tablets</text>
+    <rect x="55" y="252" width="70" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="90" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">iOS</text>
+    <rect x="135" y="252" width="70" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="170" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">Android</text>
+    <rect x="215" y="252" width="70" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="250" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">tablet</text>
+    <text x="175" y="312" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">real hardware, reserved per session</text>
+
+    <!-- target: browserkube -->
+    <rect x="350" y="196" width="270" height="134" fill="none" stroke="var(--accent)" stroke-width="2"/>
+    <text x="485" y="218" text-anchor="middle" font-size="11.5" fill="currentColor">BrowserKube operator</text>
+    <text x="485" y="234" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">schedules a pod per session</text>
+    <rect x="362" y="252" width="74" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="399" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">pod</text>
+    <rect x="443" y="252" width="74" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="480" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">pod</text>
+    <rect x="524" y="252" width="74" height="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.8"/>
+    <text x="561" y="276" text-anchor="middle" font-size="9.5" fill="currentColor">pod</text>
+    <text x="485" y="312" text-anchor="middle" font-size="9.5" fill="currentColor" opacity="0.6">Chrome · Firefox · WebKit, on demand</text>
+  </svg>
+  <figcaption>One entry point, two very different backends. Mobile sessions need real hardware reserved per session; browser sessions don't — so BrowserKube starts a pod when a session is requested and reclaims it when the session ends, instead of keeping a browser grid idle between runs.</figcaption>
+</figure>

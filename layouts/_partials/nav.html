@@ -1,0 +1,15 @@
+{{- /* Section anchors live on the homepage; from any other page they must point back to it. */ -}}
+{{- $home := cond .IsHome "" ("/" | relURL) -}}
+{{- $blog := site.GetPage "/blog" -}}
+<nav>
+  <a class="mark" href="{{ "/" | relURL }}">Andrei Varabyeu <span class="handle">| avarabyeu</span></a>
+  <div class="navlinks">
+    <a href="{{ $home }}#approach"><span class="num">01</span>// approach</a>
+    <a href="{{ $home }}#work"><span class="num">02</span>// work</a>
+    <a href="{{ $home }}#about"><span class="num">03</span>// about</a>
+    <a href="{{ $home }}#contact"><span class="num">04</span>// contact</a>
+    {{- with $blog }}{{ if .RegularPages }}
+    <a href="{{ .RelPermalink }}"><span class="num">05</span>// blog</a>
+    {{- end }}{{ end }}
+  </div>
+</nav>

@@ -1,0 +1,15 @@
+<section id="about">
+  {{- partial "home/section-head.html" . }}
+  <div class="about-grid">
+    <div>
+      {{- range .bio }}
+      <p>{{ . }}</p>
+      {{- end }}
+    </div>
+    <dl class="facts">
+      {{- range .facts }}
+      <div class="fact"><dt>{{ .label }}</dt><dd>{{ .value }}</dd></div>
+      {{- end }}
+    </dl>
+  </div>
+</section>

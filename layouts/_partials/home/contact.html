@@ -1,0 +1,10 @@
+<section id="contact" class="contact">
+  <span class="eyebrow">{{ .eyebrow }}</span>
+  <h2>{{ .title }}</h2>
+  <p class="note">{{ .note }}</p>
+  <div class="contact-links">
+    {{- range .links }}
+    <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>
+    {{- end }}
+  </div>
+</section>

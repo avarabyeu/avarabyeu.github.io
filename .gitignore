@@ -1,9 +1,22 @@
-!.keep
-*.DS_Store
-*.sass-cache
-/.asset-cache/*
-/_site/*
-/_assets/bower/*
-vendor/
-*.iml
+# Private material — must never reach a public GitHub Pages repo.
+_private/
+*.jsonl
+
+# Source CV: contains personal details and NDA'd client descriptions.
+*.docx
+
+# Planning notes: NDA handling, employer posture, strategy. Travel by folder copy, not git.
+/CLAUDE.md
+/PROJECT_PLAN.md
+
+# Unchosen design directions: still carry pre-review copy. Option A is the committed design source.
+/mockups/option-b.html
+/mockups/option-c.html
+
+# Hugo build output
+/public/
+/resources/_gen/
+.hugo_build.lock
+
 .idea/
+.DS_Store

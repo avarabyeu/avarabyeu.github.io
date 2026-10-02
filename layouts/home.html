@@ -1,0 +1,9 @@
+{{ define "main" }}
+  {{- with hugo.Data.home }}
+  {{- partial "home/hero.html" .hero }}
+  {{- partial "home/approach.html" .approach }}
+  {{- partial "home/work.html" (dict "head" .work "groups" hugo.Data.work.groups) }}
+  {{- partial "home/about.html" .about }}
+  {{- partial "home/contact.html" .contact }}
+  {{- end }}
+{{ end }}

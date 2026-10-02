@@ -1,0 +1,36 @@
+version: '3'
+
+vars:
+  # Hugo runs from the official image, never a local install. CI uses these same tasks.
+  HUGO_VERSION: 0.167.0
+  HUGO_IMAGE: ghcr.io/gohugoio/hugo:v{{.HUGO_VERSION}}
+  # Run as the calling user so public/ stays writable (and owned by you) on macOS and on CI runners.
+  DOCKER_HUGO: >-
+    docker run --rm
+    --user "$(id -u):$(id -g)"
+    -e HUGO_CACHEDIR=/tmp/hugo-cache
+    -v "{{.ROOT_DIR}}:/project" -w /project
+
+tasks:
+  build:
+    desc: Build the production site into public/ (extra hugo flags after --)
+    cmds:
+      - '{{.DOCKER_HUGO}} {{.HUGO_IMAGE}} --gc --minify --cleanDestinationDir {{.CLI_ARGS}}'
+
+  serve:
+    desc: Live-reloading dev server on http://localhost:1313, drafts included
+    interactive: true
+    cmds:
+      - '{{.DOCKER_HUGO}} -it -p 1313:1313 {{.HUGO_IMAGE}} server --bind 0.0.0.0 --buildDrafts {{.CLI_ARGS}}'
+
+  clean:
+    desc: Remove build output and Hugo's generated resources
+    cmds:
+      - rm -rf public resources/_gen
+
+  mockups:
+    desc: Serve the original design mockups on http://127.0.0.1:8745
+    dir: mockups
+    interactive: true
+    cmds:
+      - python3 -m http.server 8745 --bind 127.0.0.1

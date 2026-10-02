@@ -1,0 +1,19 @@
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">{{ .eyebrow }}</span>
+    {{- with .headline }}
+    <h1 class="headline">{{ .lead }} <span class="accent">{{ .accent }}</span> {{ .tail }}</h1>
+    {{- end }}
+    <p class="lede">{{ .lede }}</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">See the work</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="stack" aria-hidden="true">
+    <div class="glow"></div>
+    <div class="cube c3"><div class="left"></div><div class="right"></div><div class="top"></div></div>
+    <div class="cube c2"><div class="left"></div><div class="right"></div><div class="top"></div></div>
+    <div class="cube c1"><div class="left"></div><div class="right"></div><div class="top"></div></div>
+  </div>
+</div>

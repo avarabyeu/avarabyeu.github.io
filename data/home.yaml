@@ -1,0 +1,79 @@
+hero:
+  eyebrow: Warsaw, PL — Solutions Architect
+  headline:
+    lead: From initiative to
+    accent: production-ready
+    tail: platform.
+  lede: >-
+    I help startups turn a founder's idea — whether it's a slide deck or a vibe-coded prototype — into a
+    production-grade solution that holds: real distributed-systems architecture, DevOps discipline, and AI
+    applied where it actually earns its keep.
+
+approach:
+  eyebrow: Approach
+  title: Three lenses, one pattern
+  intro: >-
+    Take something fragile — an idea, a legacy product, a startup mid-fundraise — and make it reliable enough
+    to bet a company on.
+  lenses:
+    - role: AI Advocate
+      title: AI-enabled development
+      text: >-
+        AI woven into both the process and the product: agents and skills driving the work, MCP making what
+        ships reachable by other agents, not just people.
+    - role: Architect
+      title: Platform & infrastructure engineering
+      text: >-
+        Architecture that survives funding rounds, multi-tenant load, and infrastructure costs that could
+        sink a startup's runway.
+    - role: Software Engineer
+      title: Product development
+      text: Open-source products and internal tooling, built to outlive the project they were built for.
+
+work:
+  eyebrow: Selected work
+  title: Case studies
+  intro: "Six platforms, one thread each: what was broken, what I built, what happened after."
+
+about:
+  eyebrow: About
+  title: Engineer, architect, brevet rider
+  bio:
+    - >-
+      I'm a software engineer and architect based in Warsaw, Poland — originally from Minsk, Belarus, with a
+      degree in Electronics from BNTU. Over more than a decade in the industry, I've kept circling back to the
+      same kind of work: taking something from "someone's idea" to "a platform that actually runs in
+      production" — usually for startups, almost always with open source somewhere in the foundation.
+    - >-
+      I like moving fast without cutting corners that come back to bite you later — durable-execution engines
+      instead of duct tape, multitenancy designed in instead of bolted on, infrastructure that's boring in the
+      right ways. Lately that also means bringing AI into the loop properly: not as a demo, but as something a
+      platform is actually built around.
+    - >-
+      Outside of work: family, a daughter, a dog, and long-distance cycling — brevets, mostly, which is its
+      own lesson in pacing yourself for the long haul.
+  facts:
+    - label: Based in
+      value: Warsaw, Poland
+    - label: From
+      value: Minsk, Belarus
+    - label: Education
+      value: BNTU — Electronics
+    - label: In the industry
+      value: 10+ years
+    - label: Off the clock
+      value: brevets, family, an Australian shepherd
+
+contact:
+  eyebrow: Get in touch
+  title: Always happy to talk platforms, infrastructure, and where AI actually earns its keep.
+  note: If you're building something real and any of this looks like your problem, say hello.
+  links:
+    - label: hello@avarabyeu.me
+      url: mailto:hello@avarabyeu.me
+    - label: github.com/avarabyeu
+      url: https://github.com/avarabyeu
+      external: true
+    - label: linkedin.com/in/avarabyeu
+      url: https://linkedin.com/in/avarabyeu
+      external: true

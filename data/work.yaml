@@ -1,0 +1,92 @@
+# Case studies, grouped by lens. Each group has one `lead` card (accent top border) and optional `more`
+# cards, laid out as a grid (`layout: grid`, default) or full-width rows (`layout: stack`, for cards that
+# carry a diagram). A card's story is either problem/approach/outcome or a single `what`.
+# `diagram` names a partial in layouts/_partials/diagrams/.
+
+groups:
+  - title: AI-Enabled Development
+    lead:
+      title: Mobitru
+      meta: Project Manager · Architect · AI Advocate — ongoing
+      problem: >-
+        A mature mobile and cross-browser testing platform, years on the market and inherited from a previous
+        owner, had to stay relevant as AI assistants started doing work engineers used to do by hand.
+      approach: >-
+        Drove the platform's shift to an AI-native product: introduced a Mobile MCP Server and a Playwright MCP
+        Server so AI assistants operate test infrastructure directly, authored Claude Code Skills on top, and
+        folded in BrowserKube — my own open-source project — to add desktop browser testing.
+      outcome: >-
+        A years-old product repositioned as AI-native testing infrastructure: established platform,
+        open-source extension, and AI-assistant-facing layer, working as one system.
+      tags: [MCP, Claude Code Skills, Playwright, Kubernetes]
+      link: {url: "https://mobitru.com", label: mobitru.com}
+      diagram: mobitru
+    more:
+      - title: ReportPortal MCP
+        meta: Design & architecture
+        what: >-
+          Bridge between ReportPortal's test-execution data and AI assistants — natural-language queries over
+          test results from Claude, Copilot, and Cursor.
+        tags: [MCP, Go]
+    crossref: "See also: [AIStats](#aistats) — computer-vision video analytics meets the same AI-native approach."
+
+  - title: Platform & Infrastructure Engineering
+    lead:
+      title: SKAEL
+      meta: Founding Golang Engineer → Solution Architect
+      problem: >-
+        Building a hyper-automation platform — an automation engine plus a RASA-based conversational layer —
+        for enterprise clients, deployable as SaaS or hybrid SaaS+on-prem. RASA itself had no multitenancy
+        story.
+      approach: >-
+        Joined pre-product, working directly with the founders (later the company's C-suite) from idea through
+        architecture through build. Built the automation core on Temporal for durable, fault-tolerant workflow
+        execution, and wrote a custom Golang Operator to run isolated RASA instances per tenant.
+      outcome: >-
+        "Digital employees" before the term existed — a platform that carried the company through multiple
+        funding rounds.
+      tags: [Temporal, Go, Kubernetes Operator, RASA]
+      diagram: skael
+    layout: stack
+    more:
+      - title: VSOptima
+        meta: DevOps & Infrastructure Architect
+        what: >-
+          Brought an existing platform onto Kubernetes to support both SaaS and on-prem installs, and built a
+          DevOps practice from close to scratch.
+        tags: [Kubernetes, DevOps]
+      - title: AIStats
+        id: aistats
+        meta: Architect
+        what: >-
+          Architected a computer-vision sports analytics platform (soccer match video, ML-augmented) with
+          heavy, globally distributed GPU demand. Built the processing pipeline on Temporal and solved GPU cost
+          efficiency with a custom job-allocation scheme across multiple Kubernetes clusters worldwide,
+          scheduled via Kueue.
+        tags: [Temporal, Kueue, Multi-cluster K8s, Computer Vision]
+        diagram: aistats
+
+  - title: Product Development
+    lead:
+      title: ReportPortal
+      meta: Creator & Architect — ongoing
+      problem: Test-automation results across the industry had no strong analysis or reporting layer.
+      approach: >-
+        Originated the idea, built the first implementation, secured internal funding to get it going, then
+        owned the architecture through a monolith → microservices → Kubernetes-native evolution.
+      outcome: >-
+        One of the most widely used test-reporting systems in the industry, with agents for most mainstream
+        test frameworks — 2,000+ stars, 500+ forks, 100+ contributors.
+      tags: [Java, Kubernetes, PostgreSQL, MCP]
+      link: {url: "https://github.com/reportportal/reportportal", label: github.com/reportportal}
+    more:
+      - title: BrowserKube
+        meta: Creator — now core of Mobitru Desktop Testing
+        what: >-
+          A Kubernetes operator that schedules browsers as pods, started as a personal project to fix
+          resource-hungry Selenium and Playwright test runs. It now runs in production as the browser grid
+          behind Mobitru's desktop testing.
+        tags: [Go, Kubernetes Operator, Selenium]
+        link: {url: "https://github.com/browserkube/browserkube", label: github.com/browserkube}
+    # rendered after the group, full section width
+    figure: browserkube
