@@ -28,7 +28,7 @@ Google. Fonts are served from this site, so they reveal nothing to third parties
 
 ## Cookies and local storage
 
-- `_ga` and `_ga_346QXZCFJ8`: Google Analytics cookies, set only after you accept, kept for up to two years.
+- `_ga` and `_ga_7PSYP1JW2F`: Google Analytics cookies, set only after you accept, kept for up to two years.
 - `analytics-consent`: your banner choice, kept in your browser's local storage so the banner doesn't ask
   again. It never leaves your device.
 
