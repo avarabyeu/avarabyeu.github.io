@@ -1,4 +1,4 @@
-// Google Analytics behind explicit consent (Consent Mode, basic implementation): nothing from Google
+// Google Analytics behind explicit consent (Consent Mode v2, basic implementation): nothing from Google
 // is requested until the visitor accepts. The choice itself is kept in localStorage.
 (function () {
   var banner = document.getElementById('consent');
@@ -14,10 +14,14 @@
     window['ga-disable-' + id] = false;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
+    // Standard Consent Mode v2 sequence, so Google's tooling (Tag Assistant, GA consent settings) sees
+    // it: everything denied by default, then the visitor's grant. Ad signals are never granted.
     gtag('consent', 'default', {
-      analytics_storage: 'granted',
+      analytics_storage: 'denied',
       ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'
     });
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    gtag('set', 'ads_data_redaction', true);
     gtag('js', new Date());
     gtag('config', id);
     var s = document.createElement('script');
