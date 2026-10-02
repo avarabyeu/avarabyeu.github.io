@@ -11,4 +11,4 @@ description = 'Solutions architect who takes startups from initiative to product
 # GA4 Measurement ID (public by design). Empty = no analytics. Rendered in production builds only, and
 # gtag.js loads only after the visitor accepts the consent banner (layouts/_partials/consent.html).
 [services.googleAnalytics]
-id = 'G-346QXZCFJ8'
+id = 'G-7PSYP1JW2F'
