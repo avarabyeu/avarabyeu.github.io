@@ -41,7 +41,8 @@ about:
   bio:
     - >-
       I'm a software engineer and architect based in Warsaw, Poland — originally from Minsk, Belarus, with a
-      degree in Electronics from BNTU. Over more than a decade in the industry, I've kept circling back to the
+      degree in Electronics from the Belarusian National Technical University (BNTU). Over more than a decade
+      in the industry, I've kept circling back to the
       same kind of work: taking something from "someone's idea" to "a platform that actually runs in
       production" — usually for startups, almost always with open source somewhere in the foundation.
     - >-
@@ -58,7 +59,7 @@ about:
     - label: From
       value: Minsk, Belarus
     - label: Education
-      value: BNTU — Electronics
+      value: Electronics, Belarusian National Technical University
     - label: In the industry
       value: 10+ years
     - label: Off the clock

@@ -18,5 +18,8 @@ _private/
 /resources/_gen/
 .hugo_build.lock
 
+# cf CLI local cache (account ID and name)
+.cloudflare/
+
 .idea/
 .DS_Store
