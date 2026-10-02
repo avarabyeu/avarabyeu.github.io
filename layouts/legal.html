@@ -1,0 +1,13 @@
+{{ define "main" }}
+<article class="page">
+  <header class="section-head">
+    {{- with .Params.updated }}
+    <span class="eyebrow">Last updated <time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format "2 January 2006" . }}</time></span>
+    {{- end }}
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+</article>
+{{ end }}
