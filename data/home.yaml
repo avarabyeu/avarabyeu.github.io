@@ -35,6 +35,11 @@ work:
   title: Case studies
   intro: "Six platforms, one thread each: what was broken, what I built, what happened after."
 
+# Shown only once at least one post is published.
+blog:
+  eyebrow: Blog
+  title: Latest posts
+
 about:
   eyebrow: About
   title: Engineer, architect, brevet rider

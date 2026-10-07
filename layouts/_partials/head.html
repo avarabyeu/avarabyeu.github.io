@@ -6,9 +6,41 @@
 <script type="text/plain" data-consent-category="analytics" src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
 {{- end }}
 <meta name="color-scheme" content="light dark">
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ .Description | default site.Params.description }}">
+{{- $isPost := and .IsPage (eq .Section "blog") }}
+{{- $title := cond .IsHome (site.Params.homeTitle | default site.Title) (printf "%s · %s" .Title site.Title) }}
+{{- $desc := .Description | default (cond .IsPage (.Summary | plainify | truncate 160) "") | default site.Params.description }}
+{{- $image := partial "og-image.html" . }}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
+{{- if and (eq .Kind "section") (not .RegularPages) }}
+<meta name="robots" content="noindex">{{/* empty blog index: keep it out of search until the first post */}}
+{{- end }}
+{{- /* Link previews (LinkedIn, Slack, messengers, X). */}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{{ cond .IsHome $title .Title }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ cond $isPost "article" (cond .IsHome "profile" "website") }}">
+<meta property="og:image" content="{{ $image.url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $image.alt }}">
+{{- if .IsHome }}
+<meta property="profile:first_name" content="Andrei">
+<meta property="profile:last_name" content="Varabyeu">
+{{- end }}
+{{- if $isPost }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:author" content="{{ site.Home.Permalink }}">
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
+{{- end }}
+<meta name="twitter:card" content="summary_large_image">
+{{- partial "schema.html" (dict "page" . "desc" $desc "image" $image.url) }}
 <link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="48x48">
 <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
@@ -24,6 +56,6 @@
 <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
 {{- end }}
 {{- end }}
-{{- with .OutputFormats.Get "rss" }}
-<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
-{{- end }}
+{{- with site.GetPage "/blog" }}{{ if .RegularPages }}{{ with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }} · Blog">
+{{- end }}{{ end }}{{ end }}

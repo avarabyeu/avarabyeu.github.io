@@ -3,6 +3,7 @@
   {{- partial "home/hero.html" .hero }}
   {{- partial "home/approach.html" .approach }}
   {{- partial "home/work.html" (dict "head" .work "groups" hugo.Data.work.groups) }}
+  {{- partial "home/blog.html" (dict "head" .blog) }}
   {{- partial "home/about.html" .about }}
   {{- partial "home/contact.html" .contact }}
   {{- end }}

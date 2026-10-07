@@ -1,0 +1,16 @@
+{{- /* Images from the post's own folder resolve to their published path; raster ones get width/height to avoid layout shift.
+       A standalone image with a title ("![alt](img.png "Caption")") becomes a figure with that caption. */ -}}
+{{- $src := .Destination -}}
+{{- $size := "" -}}
+{{- with .PageInner.Resources.Get .Destination -}}
+  {{- $src = .RelPermalink -}}
+  {{- if in (slice "jpeg" "png" "webp" "gif") .MediaType.SubType -}}
+    {{- $size = printf " width=%q height=%q" (string .Width) (string .Height) -}}
+  {{- end -}}
+{{- end -}}
+{{- $img := printf "<img src=%q alt=%q loading=\"lazy\" decoding=\"async\"%s>" $src .PlainText $size -}}
+{{- if and .IsBlock .Title -}}
+<figure>{{ $img | safeHTML }}<figcaption>{{ .Title }}</figcaption></figure>
+{{- else -}}
+{{ $img | safeHTML }}
+{{- end -}}

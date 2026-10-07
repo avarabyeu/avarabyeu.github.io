@@ -2,7 +2,7 @@
 title: Privacy
 description: What this site collects, why, and how to opt out.
 layout: legal
-updated: 2026-10-02
+lastmod: 2026-10-02
 ---
 
 This is a personal site. It has no ads, no accounts, and no forms, and nothing here is sold or shared for

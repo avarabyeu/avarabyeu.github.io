@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="160" height="160">
+  <!-- The hero's isometric cube. Face shades match it: accent, accent·78%, accent·55% (mixed with black). -->
+  <style>
+    .t{fill:#0E6E8C}.l{fill:#0B566D}.r{fill:#083D4D}
+    @media (prefers-color-scheme:dark){.t{fill:#4FC7E6}.l{fill:#3E9BB3}.r{fill:#2B6D7F}}
+  </style>
+  <!-- full hexagon underneath, so anti-aliased face seams never show the background -->
+  <path class="l" d="M32 2 58 17V47L32 62 6 47V17Z"/>
+  <path class="r" d="M32 32 58 17V47L32 62Z"/>
+  <path class="t" d="M32 2 58 17 32 32 6 17Z"/>
+</svg>

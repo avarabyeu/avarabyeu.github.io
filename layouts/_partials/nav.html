@@ -1,15 +1,16 @@
-{{- /* Section anchors live on the homepage; from any other page they must point back to it. */ -}}
+{{- /* Section anchors live on the homepage; from any other page they must point back to it.
+       "blog" joins once a post is published; numbering follows position. */ -}}
 {{- $home := cond .IsHome "" ("/" | relURL) -}}
-{{- $blog := site.GetPage "/blog" -}}
+{{- $items := slice (dict "href" (print $home "#approach") "label" "approach") (dict "href" (print $home "#work") "label" "work") -}}
+{{- with site.GetPage "/blog" }}{{ if .RegularPages }}
+  {{- $items = $items | append (dict "href" .RelPermalink "label" "blog" "current" (eq $.Section "blog")) -}}
+{{- end }}{{ end -}}
+{{- $items = $items | append (dict "href" (print $home "#about") "label" "about") (dict "href" (print $home "#contact") "label" "contact") -}}
 <nav>
   <a class="mark" href="{{ "/" | relURL }}">Andrei Varabyeu <span class="handle">| avarabyeu</span></a>
   <div class="navlinks">
-    <a href="{{ $home }}#approach"><span class="num">01</span>// approach</a>
-    <a href="{{ $home }}#work"><span class="num">02</span>// work</a>
-    <a href="{{ $home }}#about"><span class="num">03</span>// about</a>
-    <a href="{{ $home }}#contact"><span class="num">04</span>// contact</a>
-    {{- with $blog }}{{ if .RegularPages }}
-    <a href="{{ .RelPermalink }}"><span class="num">05</span>// blog</a>
-    {{- end }}{{ end }}
+    {{- range $i, $it := $items }}
+    <a href="{{ $it.href }}"{{ if $it.current }} aria-current="page"{{ end }}><span class="num">{{ printf "%02d" (add $i 1) }}</span>// {{ $it.label }}</a>
+    {{- end }}
   </div>
 </nav>

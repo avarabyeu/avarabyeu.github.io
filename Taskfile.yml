@@ -23,6 +23,14 @@ tasks:
     cmds:
       - '{{.DOCKER_HUGO}} -it -p 1313:1313 {{.HUGO_IMAGE}} server --bind 0.0.0.0 --buildDrafts {{.CLI_ARGS}}'
 
+  new-post:
+    desc: 'Create a draft post in its own folder: task new-post -- my-post-slug'
+    preconditions:
+      - sh: test -n "{{.CLI_ARGS}}"
+        msg: 'Give the post a slug: task new-post -- my-post-slug'
+    cmds:
+      - '{{.DOCKER_HUGO}} {{.HUGO_IMAGE}} new content blog/{{.CLI_ARGS}}/index.md'
+
   clean:
     desc: Remove build output and Hugo's generated resources
     cmds:

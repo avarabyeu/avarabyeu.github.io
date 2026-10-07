@@ -5,8 +5,41 @@ title = 'Andrei Varabyeu'
 disableKinds = ['taxonomy', 'term']
 enableRobotsTXT = true
 
+# RSS only for the blog section; the home feed would also list pages like /privacy/.
+[outputs]
+home = ['html']
+section = ['html', 'rss']
+
+[pagination]
+pagerSize = 10
+
+[markup.highlight]
+noClasses = false   # Chroma emits classes; colours come from the site palette in main.css
+
+[markup.goldmark.parser]
+wrapStandAloneImageWithinParagraph = false   # lets the image render hook emit <figure> for block images
+
 [params]
-description = 'Solutions architect who takes startups from initiative to production-ready platform.'
+# Search-result title and description for the homepage (other pages: "<Title> · Andrei Varabyeu").
+homeTitle = 'Andrei Varabyeu — Solutions Architect · Platforms, Kubernetes, AI'
+description = "Solutions architect in Warsaw helping startups turn a founder's idea into a production-grade platform: distributed systems, Kubernetes, DevOps, applied AI."
+
+# Facts for the schema.org Person (layouts/_partials/schema.html): what search engines and AI assistants
+# use to recognise who the site is about.
+[params.author]
+name = 'Andrei Varabyeu'
+jobTitle = 'Solutions Architect'
+locality = 'Warsaw'
+country = 'PL'
+alumniOf = 'Belarusian National Technical University'
+alumniOfUrl = 'https://en.wikipedia.org/wiki/Belarusian_National_Technical_University'
+sameAs = ['https://github.com/avarabyeu', 'https://www.linkedin.com/in/avarabyeu/']
+alternateName = []   # other spellings people may search for — fill in once confirmed
+photo = ''           # e.g. 'images/andrei.jpg' in static/ — becomes the Person image
+knowsAbout = [
+  'Solution architecture', 'Distributed systems', 'Platform engineering', 'Kubernetes', 'Kubernetes operators',
+  'DevOps', 'Temporal', 'Go', 'Model Context Protocol (MCP)', 'AI-enabled software development', 'Test automation',
+]
 
 # GA4 Measurement ID (public by design). Empty = no analytics. Rendered in production builds only, and
 # gtag.js loads only after the visitor accepts the consent banner (layouts/_partials/consent.html).

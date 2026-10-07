@@ -1,16 +1,30 @@
 {{ define "main" }}
 <section class="page">
   <div class="section-head">
-    <span class="eyebrow">Writing</span>
+    <span class="eyebrow">{{ .Params.eyebrow | default "Blog" }}</span>
     <h1>{{ .Title }}</h1>
     {{- with .Description }}
     <p>{{ . }}</p>
     {{- end }}
   </div>
-  <ul class="post-list">
-    {{- range .Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time></li>
+
+  {{- $pager := .Paginate .RegularPages.ByDate.Reverse }}
+  {{- with $pager.Pages }}
+  <div class="post-grid">
+    {{- range $i, $p := . }}
+    {{- partial "post-card.html" (dict "page" $p "level" 2 "lead" (and (eq $i 0) (eq $pager.PageNumber 1))) }}
     {{- end }}
-  </ul>
+  </div>
+  {{- else }}
+  <p class="empty">Nothing published yet.</p>
+  {{- end }}
+
+  {{- if gt $pager.TotalPages 1 }}
+  <nav class="pager" aria-label="Pagination">
+    {{- with $pager.Prev }}<a href="{{ .URL }}">← Newer</a>{{ else }}<span></span>{{ end }}
+    <span>Page {{ $pager.PageNumber }} of {{ $pager.TotalPages }}</span>
+    {{- with $pager.Next }}<a href="{{ .URL }}">Older →</a>{{ else }}<span></span>{{ end }}
+  </nav>
+  {{- end }}
 </section>
 {{ end }}

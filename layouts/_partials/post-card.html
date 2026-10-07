@@ -1,0 +1,13 @@
+{{- /* A post as a case-study card. Context: dict "page" (post), "level" (heading level), "lead" (accent top border, full row). */ -}}
+{{- $p := .page -}}
+{{- $level := .level | default 2 -}}
+<article class="card post-card{{ if .lead }} flagship{{ end }}">
+  <div class="post-meta">{{ partial "post-meta.html" $p }}</div>
+  <h{{ $level }} class="post-title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h{{ $level }}>
+  {{- with $p.Description | default ($p.Summary | plainify | truncate 220) }}
+  <p>{{ . }}</p>
+  {{- end }}
+  {{- with $p.Params.tags }}
+  <div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+  {{- end }}
+</article>

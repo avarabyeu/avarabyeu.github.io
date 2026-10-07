@@ -1,0 +1,20 @@
+{{- /* Link-preview image for a page, as dict "url" (absolute) "alt".
+       Blog posts: front-matter `image` (a file in the post's folder) if set, otherwise a card generated at build
+       time — the post's title drawn onto assets/og/post-base.png. Everything else: the site card, static/og.png. */ -}}
+{{- $url := "og.png" | absURL -}}
+{{- $alt := printf "%s — %s" site.Title "From initiative to production-ready platform." -}}
+{{- if and .IsPage (eq .Section "blog") -}}
+  {{- $alt = .Title -}}
+  {{- with .Params.image -}}
+    {{- with $.Resources.Get . }}{{ $url = .Permalink }}{{ end -}}
+  {{- else -}}
+    {{- $font := resources.Get "fonts/og/BigShouldersDisplay-Bold.ttf" -}}
+    {{- /* The transparent canvas sets the wrap width; long titles get a smaller size to stay within ~3 lines. */ -}}
+    {{- $size := cond (gt (len .Title) 48) 72 92 -}}
+    {{- $text := images.Text .Title (dict "font" $font "size" $size "color" "#14181A" "linespacing" 0 "x" 0 "y" 0) -}}
+    {{- $title := resources.Get "og/title-canvas.png" | images.Filter $text -}}
+    {{- $card := resources.Get "og/post-base.png" | images.Filter (images.Overlay $title 80 120) -}}
+    {{- $url = $card.Permalink -}}
+  {{- end -}}
+{{- end -}}
+{{- return dict "url" $url "alt" $alt -}}

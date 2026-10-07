@@ -1,11 +1,51 @@
 {{ define "main" }}
-<article class="page">
-  <header class="section-head">
-    <span class="eyebrow"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time></span>
+{{- $blog := site.GetPage "/blog" }}
+{{- $posts := where site.RegularPages "Section" "blog" }}
+<article class="page post">
+  <header class="section-head post-head">
+    <span class="eyebrow"><a href="{{ $blog.RelPermalink }}">{{ $blog.Title }}</a> · {{ partial "post-meta.html" . }}</span>
     <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="lede">{{ . }}</p>
+    {{- end }}
+    {{- with .Params.tags }}
+    <div class="tags">{{ range . }}<span>{{ . }}</span>{{ end }}</div>
+    {{- end }}
   </header>
+
   <div class="prose">
     {{ .Content }}
   </div>
+
+  <footer class="post-foot">
+    {{- /* Hugo's Pages.Next returns the element *before* the page in the list, so on a date-ascending
+           list Next is the older post and Prev the newer one (checked against test posts). */}}
+    {{- $older := $posts.ByDate.Next . }}
+    {{- $newer := $posts.ByDate.Prev . }}
+    {{- if or $newer $older }}
+    <nav class="post-nav" aria-label="More posts">
+      {{- with $older }}
+      <a class="older" href="{{ .RelPermalink }}"><span class="eyebrow">← Older</span><strong>{{ .Title }}</strong></a>
+      {{- end }}
+      {{- with $newer }}
+      <a class="newer" href="{{ .RelPermalink }}"><span class="eyebrow">Newer →</span><strong>{{ .Title }}</strong></a>
+      {{- end }}
+    </nav>
+    {{- end }}
+
+    {{- with hugo.Data.home.contact }}
+    <div class="post-cta">
+      <span class="eyebrow">{{ .eyebrow }}</span>
+      <p>{{ .note }}</p>
+      <div class="contact-links">
+        {{- range .links }}
+        <a href="{{ .url }}"{{ if .external }} target="_blank" rel="noopener"{{ end }}>{{ .label }}</a>
+        {{- end }}
+      </div>
+    </div>
+    {{- end }}
+
+    <a class="more-link" href="{{ $blog.RelPermalink }}">← All posts</a>
+  </footer>
 </article>
 {{ end }}

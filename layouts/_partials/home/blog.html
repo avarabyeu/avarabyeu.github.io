@@ -1,0 +1,13 @@
+{{- /* Latest posts. Renders nothing until a post is published, so the homepage is unchanged before then. */ -}}
+{{- $blog := site.GetPage "/blog" -}}
+{{- with first 3 (where site.RegularPages "Section" "blog").ByDate.Reverse }}
+<section id="blog">
+  {{- partial "home/section-head.html" $.head }}
+  <div class="post-grid reveal">
+    {{- range $i, $p := . }}
+    {{- partial "post-card.html" (dict "page" $p "level" 3 "lead" (eq $i 0)) }}
+    {{- end }}
+  </div>
+  <a class="more-link" href="{{ $blog.RelPermalink }}">All posts →</a>
+</section>
+{{- end }}
